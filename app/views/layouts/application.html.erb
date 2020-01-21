@@ -1,15 +1,36 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bikers</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Bikers</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      </head>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+      <body>
+         <header class="navbar navbar-fixed-top navbar-inverse">
+            <span class="nav navbar-nav navbar-left">Bikers</span>
+
+        <% if user_signed_in? %>
+
+          <div class= "nav navbar-nav navbar-right">
+            <li><%= link_to '投稿一覧', bikes_path %></li>
+            <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path,method: :delete %></li>
+          </div>
+
+        <% else %>
+
+          <div class= "nav navbar-nav navbar-right">
+            <li><%= link_to 'ホーム', root_path %></li>
+            <li><%= link_to 'アバウト', homes_about_path %></li>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+          </div>
+        <% end %>
+        </header>
+        <%= yield %>
+      </body>
+    </html>

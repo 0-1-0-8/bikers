@@ -1,2 +1,37 @@
-<h1>Bikes#show</h1>
-<p>Find me in app/views/bikes/show.html.erb</p>
+<h2>詳細</h2>
+<div class="col-xs-5">
+<div class="box">
+		<% if current_user == @bike.user %>
+			<%= link_to "削除", destroy_bike_path(@bike.id),method: :delete, "data-confirm" => "本当に削除しますか？" %>
+			<%= link_to "編集", edit_bike_path(@bike.id) %>
+		<% end %>
+
+	<%= attachment_image_tag @bike.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+	<%= @bike.user.name %><br>
+	<%= @bike.text %><br>
+	<%= attachment_image_tag @bike, :image, :fill, 250, 250, format: 'jpeg' %><br>
+	<%= @bike.created_at.strftime('%Y/%m/%d/%H:%M') %><br>
+
+	<div class="row">
+		<div class="col-xs-3">
+        	<%= @bike.comments.count %>件コメント
+   	    </div>
+   	    <div class="col-xs-3">
+ 	    	<%= render  'bikes/bikes', bike: @bike %>
+ 		</div>
+ 	</div>
+
+		<% @bike.comments.each do |comment| %>
+			<%= attachment_image_tag @bike.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+			<%= comment.user.name %><br>
+			<%= comment.text %><br>
+			<%= comment.created_at.strftime('%Y/%m/%d/%H:%M') %><br>
+		<% end %>
+
+		<%= form_for(@bike_comment) do |f| %>
+			<%= f.hidden_field :bike_id, :value => @bike.id %>
+			<%= f.text_area :text,placeholder: "コメントをここに" %>
+			<%= f.submit "送信する" %>
+		<% end %>
+</div>
+</div>

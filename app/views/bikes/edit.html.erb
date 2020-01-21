@@ -1,2 +1,7 @@
-<h1>Bikes#edit</h1>
-<p>Find me in app/views/bikes/edit.html.erb</p>
+<%= form_for(@bike) do |f| %>
+	<h2>本文</h2>
+	<%= f.text_field :text %>
+	<h2>画像</h2>
+	<%= attachment_image_tag @bike, :image, :fill, 300, 300, format: 'jpeg' %>
+	<%= f.submit '変更' %>
+<% end %>
