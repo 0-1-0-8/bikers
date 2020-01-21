@@ -1,1 +1,34 @@
-<h1>投稿一覧</h1>
+<div container="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<%= form_for @bike do |f| %>
+			<h4>本文</h4>
+			<%= f.text_area :text %>
+			<h4>画像</h4>
+		    <%= f.attachment_field :image %>
+		    <%= f.submit '投稿' %>
+			<% end %>
+		</div>
+
+		<div class="col-xs-5">
+			<h2>Bikers</h2>
+			<% @bikes.each do |bike| %>
+			<div class="box">
+		   		<%= attachment_image_tag bike.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %>
+			    <%= bike.user.name %><br>
+				<%= link_to bike.text,bike_path(bike.id) %><br>
+				<%= attachment_image_tag bike, :image, :fill, 250, 250, format: 'jpeg' %><br>
+				<%= bike.created_at.strftime("%Y/%m/%d/%H:%M") %><br>
+			    <div class="row">
+			    	<div class="col-xs-3 favorite">
+			   		 <%= link_to "#{bike.comments.count} コメント", bike_path(bike.id) %>
+			        </div>
+			        <div class="col-xs-3">
+			  		  <%= render  'bikes/bikes', bike: bike %>
+			        </div>
+		    	</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
