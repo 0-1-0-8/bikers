@@ -1,29 +1,65 @@
-<div container="container">
+<div class="container">
 	<div class="row">
-		<div class="col-xs-3">
-			<%= form_for @bike do |f| %>
-			<h4>本文</h4>
-			<%= f.text_area :text %>
-			<h4>画像</h4>
-		    <%= f.attachment_field :image %>
-		    <%= f.submit '投稿' %>
-			<% end %>
+		<div class="col-3">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+		  投稿
+		</button>
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Bikers</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		        <div class="modal-body">
+				<%= form_for @bike do |f| %>
+				<h4>本文</h4>
+				<%= f.text_area :text %>
+				<h4>画像</h4>
+			    <%= f.attachment_field :bike_images_images, multiple: true %>
+		        </div>
+		        <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+		        <%= f.submit '投稿' %>
+		        <% end %>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		</div>
 
-		<div class="col-xs-5">
+		<div class="col-5">
 			<h2>Bikers</h2>
+
+			<%= search_form_for @q  do |f| %>
+			<div class="form-group">
+			<%= f.label :text_cont, "Bikers" %>
+			<%= f.text_field :text_cont, class: "form-control" %>
+			</div>
+			<div class="actions"><%= f.submit "検索" %></div>
+			<% end %>
+
 			<% @bikes.each do |bike| %>
 			<div class="box">
-		   		<%= attachment_image_tag bike.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %>
+				<%= link_to user_path(bike.user) do %>
+		   			<%= attachment_image_tag bike.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg" %>
+		   		<% end %>
 			    <%= bike.user.name %><br>
 				<%= link_to bike.text,bike_path(bike.id) %><br>
-				<%= attachment_image_tag bike, :image, :fill, 250, 250, format: 'jpeg' %><br>
+				<% bike.bike_images.each do |bike_image| %>
+					<%= attachment_image_tag bike_image, :image, :fill, 250, 250, format: 'jpeg' %><br>
+				<% end %>
+
+
 				<%= bike.created_at.strftime("%Y/%m/%d/%H:%M") %><br>
 			    <div class="row">
-			    	<div class="col-xs-3 favorite">
+			    	<div class="col-3 favorite">
 			   		 <%= link_to "#{bike.comments.count} コメント", bike_path(bike.id) %>
 			        </div>
-			        <div class="col-xs-3">
+			        <div class="col-3">
 			  		  <%= render  'bikes/bikes', bike: bike %>
 			        </div>
 		    	</div>

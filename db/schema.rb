@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_114941) do
+ActiveRecord::Schema.define(version: 2020_01_25_051925) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2020_01_20_114941) do
     t.string "password"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "bike_images", force: :cascade do |t|
+    t.integer "bike_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bikes", force: :cascade do |t|
@@ -55,10 +62,9 @@ ActiveRecord::Schema.define(version: 2020_01_20_114941) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.integer "following"
-    t.integer "follower"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,6 +1,6 @@
 <%= form_for(@bike) do |f| %>
 	<h2>本文</h2>
-	<%= f.text_field :text %>
+	<%= f.text_area :text %>
 	<h2>画像</h2>
 	<%= attachment_image_tag @bike, :image, :fill, 300, 300, format: 'jpeg' %>
 	<%= f.submit '変更' %>
