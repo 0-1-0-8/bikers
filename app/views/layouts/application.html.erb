@@ -7,30 +7,42 @@
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
       </head>
 
       <body>
-         <header class="navbar navbar-fixed-top navbar-inverse">
-            <span class="nav navbar-nav navbar-left">Bikers</span>
+<div class="wrapper">
+<header>
+  <% if user_signed_in? %>
+  <a>Bikers</a>
 
-        <% if user_signed_in? %>
+    <div class="menu-trigger" href="">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-          <div class= "nav navbar-nav navbar-right">
-            <li><%= link_to '投稿一覧', bikes_path %></li>
-            <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
-            <li><%= link_to 'ログアウト', destroy_user_session_path,method: :delete %></li>
-          </div>
+    <nav>
+      <ul>
+    <li> <%= link_to '投稿一覧', bikes_path, class: "fas fa-motorcycle" %> </li>
+    <li> <%= link_to 'マイページ',user_path(current_user.id), class: "fas fa-user" %></li>
+    <li> <%= link_to 'ログアウト',destroy_user_session_path,method: :delete, class: "fas fa-sign-out-alt" %></li>
+       </ul>
+    </nav>
+    <div class="overlay"></div>
 
-        <% else %>
+  <% else %>
 
-          <div class= "nav navbar-nav navbar-right">
-            <li><%= link_to 'ホーム', root_path %></li>
-            <li><%= link_to 'アバウト', homes_about_path %></li>
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
-            <li><%= link_to 'ログイン', new_user_session_path %></li>
-          </div>
-        <% end %>
-        </header>
-        <%= yield %>
+  <a>Bikers</a>
+    <li><%= link_to 'ホーム', root_path %> </li>
+    <li> <%= link_to 'アバウト',homes_about_path %> </li>
+    <li>  <%= link_to '新規登録',new_user_registration_path %></li>
+    <li> <%= link_to 'ログイン',new_user_session_path %></li>
+
+  <% end %>
+</header>
+</div>
+
+    <%= yield %>
       </body>
     </html>

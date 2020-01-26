@@ -1,0 +1,9 @@
+<% if user_signed_in? && @user != current_user %>
+  <div id="follow_form">
+    <% if current_user.followed?(@user) %>
+      <%= render "unfollow" %>
+    <% else %>
+      <span id="a"><%= render "follow" %></span>
+    <% end %>
+  </div>
+<% end %>
