@@ -14,7 +14,7 @@
 <div class="wrapper">
 <header>
   <% if user_signed_in? %>
-  <a>Bikers</a>
+  <h2>Bikers</h2>
 
     <div class="menu-trigger" href="">
       <span></span>
@@ -24,20 +24,31 @@
 
     <nav>
       <ul>
-    <li> <%= link_to '投稿一覧', bikes_path, class: "fas fa-motorcycle" %> </li>
-    <li> <%= link_to 'マイページ',user_path(current_user.id), class: "fas fa-user" %></li>
-    <li> <%= link_to 'ログアウト',destroy_user_session_path,method: :delete, class: "fas fa-sign-out-alt" %></li>
+        <li> <%= link_to '投稿一覧', bikes_path, class: "fas fa-motorcycle" %> </li>
+        <li> <%= link_to 'マイページ',user_path(current_user.id), class: "fas fa-user" %></li>
+        <li> <%= link_to 'ログアウト',destroy_user_session_path,method: :delete, class: "fas fa-sign-out-alt" %></li>
        </ul>
     </nav>
     <div class="overlay"></div>
 
   <% else %>
 
-  <a>Bikers</a>
-    <li><%= link_to 'ホーム', root_path %> </li>
-    <li> <%= link_to 'アバウト',homes_about_path %> </li>
-    <li>  <%= link_to '新規登録',new_user_registration_path %></li>
-    <li> <%= link_to 'ログイン',new_user_session_path %></li>
+  <div class="menu-trigger" href="">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+
+  <h2>Bikers</h2>
+  <nav>
+    <ul>
+      <li><%= link_to 'ホーム', root_path %> </li>
+      <li> <%= link_to 'アバウト',homes_about_path %> </li>
+      <li>  <%= link_to '新規登録',new_user_registration_path %></li>
+      <li> <%= link_to 'ログイン',new_user_session_path %></li>
+    </ul>
+  </nav>
+  <div class="overlay"></div>
 
   <% end %>
 </header>
