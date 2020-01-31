@@ -72,3 +72,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
  gem "refile-mini_magick"
  gem "carrierwave"
  gem 'ransack'
+ gem 'pry-rails'

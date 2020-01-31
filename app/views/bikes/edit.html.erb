@@ -1,7 +1,27 @@
-<%= form_for(@bike) do |f| %>
-	<h2>本文</h2>
-	<%= f.text_area :text %>
-	<h2>画像</h2>
-	<%= attachment_image_tag @bike, :image, :fill, 300, 300, format: 'jpeg' %>
-	<%= f.submit '変更' %>
-<% end %>
+			<% if current_user == @user %>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				プロフィール編集
+				</button>
+				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">プロフィール編集</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<%= form_for(@bike) do |f| %>
+							<div class="modal-body">
+								<%= f.text_area :text %>
+								<%= attachment_image_tag @bike, :image, :fill, 300, 300, format: 'jpeg' %>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+								<%= f.submit '変更',class: "btn btn-info" %>
+							</div>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>

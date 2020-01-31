@@ -14,7 +14,7 @@
 <div class="wrapper">
 <header>
   <% if user_signed_in? %>
-  <h2>Bikers</h2>
+  <div class="fas fa-motorcycle">Bikers</div>
 
     <div class="menu-trigger" href="">
       <span></span>
@@ -39,13 +39,13 @@
       <span></span>
   </div>
 
-  <h2>Bikers</h2>
+  <div class="fas fa-motorcycle">Bikers</div>
   <nav>
     <ul>
-      <li><%= link_to 'ホーム', root_path %> </li>
-      <li> <%= link_to 'アバウト',homes_about_path %> </li>
-      <li>  <%= link_to '新規登録',new_user_registration_path %></li>
-      <li> <%= link_to 'ログイン',new_user_session_path %></li>
+      <li><%= link_to 'ホーム', root_path,class: "fas fa-home" %> </li>
+      <li> <%= link_to 'アバウト',homes_about_path,class: "fas fa-hands-helping" %> </li>
+      <li>  <%= link_to '新規登録',new_user_registration_path,class: "fas fa-user-plus" %></li>
+      <li> <%= link_to 'ログイン',new_user_session_path,class: "fas fa-sign-in-alt" %></li>
     </ul>
   </nav>
   <div class="overlay"></div>
