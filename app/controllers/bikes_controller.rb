@@ -1,5 +1,6 @@
 class BikesController < ApplicationController
   before_action :setbike, only: [:edit, :update, :destroy]
+  before_action :colect_user, only:[:edit, :update]
 
   def index
     @bike = Bike.new
@@ -19,7 +20,7 @@ class BikesController < ApplicationController
 
   def create
     @bike = current_user.bikes.build(bike_params)
-    @bike.save!
+    @bike.save
     redirect_to bikes_path
   end
 
@@ -45,4 +46,10 @@ class BikesController < ApplicationController
   def search_params
     params.require(:q).permit!
   end
+  def colect_user
+     @bike = Bike.find(params[:id])
+     if @bike.user_id != current_user.id
+        redirect_to bikes_path
+   end
+ end
 end

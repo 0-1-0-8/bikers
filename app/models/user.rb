@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :favorite_bikes, through: :favorites, source: :favorite
   has_many :followed_follows, foreign_key: "follower_id", class_name: "Follow",  dependent: :destroy
   has_many :followed, through: :followed_follows
+  validates :name, presence: true
 
 	def followed?(user)
 		followed_follows.find_by(followed_id: user.id)
