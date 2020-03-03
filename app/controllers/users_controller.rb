@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @bike = Bike.new
     @bikes = @user.bikes
     @favorites = @user.favorites
+    @follows = @user.followed_follows
   end
 
   def edit
