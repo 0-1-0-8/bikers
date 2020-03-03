@@ -85,9 +85,9 @@ var textfield = $("input[name=user]");
 });
 
 $(document).on('turbolinks:load', function() {
-  $('tabu a').click(function(){
+  $('tab a').click(function(){
     var tabId = $(this).attr('data-tab');
-    $('tabu a').removeClass('active');
+    $('tab a').removeClass('active');
     $('.Tabcondent').removeClass('active');
     $(this).addClass('active');
     $('#'+tabId).addClass('active');
