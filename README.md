@@ -1,25 +1,12 @@
-# README
+# Bikers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Bikersはツーリングを楽しむライダーのためのツーリングスポット共有サイトです。
 
-Things you may want to cover:
+## サイトの説明・概要
 
-* Ruby version
+私がこのサイトを作ろうと思ったきっかけは全国のライダーと様々なツーリングスポットを共有したいという思いからサイトを作りました。
+免許取立ての初心者からベテランの年配の方まで幅広く利用されることを想定して、シンプルで使いやすいサイトを目指しました。
 
-* System dependencies
+## サイトURL
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# bikers
+http://18.178.93.59
